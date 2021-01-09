@@ -1,2 +1,106 @@
-# tailwindcss-border-gradient-radius
-Tailwind CSS plugin for generating border gradients with could be used with the rounded utility
+# Border Gradients Plugin for Tailwind CSS based on background-origin and background-image  
+
+Tailwind CSS plugin for generating border gradients with could be used with the rounded utility class.
+
+> The plugin is based on [tailwindcss-gradients](https://github.com/benface/tailwindcss-gradients).
+
+![BorderGradientRounded](./img/border-gradient-rounded.png)
+## Requirements
+
+This plugin requires Tailwind CSS 1.2 or later. It's recommended to use the new 2.x version. 
+
+## Installation 
+
+npm install 
+
+
+
+## Usage
+
+### Simple
+
+```js
+{
+  theme: {
+    linearBorderGradients: theme => ({
+        colors: theme('colors'),
+        background: theme('colors'),
+        }),
+  },
+  plugins: [
+    require('tailwindcss-gradients'),
+  ],
+}
+```
+
+With colors you can specify your border gradients.
+With background you can specify your background within your button for example
+
+```js
+{
+  theme: {
+    linearBorderGradients: {
+      directions: { // defaults to these values
+        't': 'to top',
+        'tr': 'to top right',
+        'r': 'to right',
+        'br': 'to bottom right',
+        'b': 'to bottom',
+        'bl': 'to bottom left',
+        'l': 'to left',
+        'tl': 'to top left',
+      },
+      colors: { // defaults to {}
+        'red': '#f00',
+        'red-blue': ['#f00', '#00f'],
+        'blue-green': ['#0000ff', '#00FF00'],
+        'red-green-blue': ['#f00', '#0f0', '#00f'],
+        'black-white-with-stops': ['#000', '#000 45%', '#fff 55%', '#fff'],
+      },
+      background: {
+        'gray-50': '#F9FAFB'.
+        'gray-900':'#111827',
+      },
+    },
+
+  },
+  variants: {
+    linearBorderGradients: ['responsive', 'hover', 'dark'], // defaults to ['responsive']
+  },
+  plugins: [
+    require('tailwindcss-border-gradients-radius')(),
+  ],
+}
+```
+
+To learn more about the backgrounds of Gradient Borders based on CSS see Method 2: https://dev.to/rumansaleem/gradient-borders-with-css-3mnk
+
+This plugin generates the following utilities:
+
+```css
+/* configurable with the "linearBorderGradients" theme object */
+.border-gradient-[direction-key]-[color-key]-[background-key] {
+    border: 2px solid transparent;
+    background: 
+        linear-gradient( to right, [background-value], [background-value] ), 
+        linear-gradient(to [direction-value], [color-value-1], [color-value2], [color-value-n]);
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+}
+
+```
+
+# Example how to use in Tailwind
+
+https://play.tailwindcss.com/64999vl0gC
+
+
+```html
+<div class="bg-gray-900 p-12">
+  <div class="text-center">
+    <h1 class="text-gray-100 text-medium mb-3">Border gradient with rounded corners</h1>
+    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900 border-solid border-4 rounded-xl text-gray-100 text-lg">Button text</button>
+  </div>
+</div>
+
+```
