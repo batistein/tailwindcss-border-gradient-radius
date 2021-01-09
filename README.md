@@ -10,10 +10,10 @@ Tailwind CSS plugin for generating border gradients with could be used with the 
 This plugin requires Tailwind CSS 1.2 or later. It's recommended to use the new 2.x version. 
 
 ## Installation 
-
+```
 npm install tailwindcss-border-gradient-radius
 yarn add tailwindcss-border-gradient-radius
-
+```
 ## Usage
 
 ### Simple
