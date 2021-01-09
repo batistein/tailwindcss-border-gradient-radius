@@ -75,7 +75,7 @@ const flattenColorPalette = function(colors) {
   
       const linearBorderGradientUtilities = (function() {
         let utilities = {};
-        _.forEach(linearBorderGradientColors, (colors, colorKey) => {
+        _.forEach(flattenColorPalette(linearBorderGradientColors), (colors, colorKey) => {
           colors = normalizeColors(colors, true);
           if (!colors) {
             return; // continue
