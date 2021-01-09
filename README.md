@@ -11,9 +11,8 @@ This plugin requires Tailwind CSS 1.2 or later. It's recommended to use the new 
 
 ## Installation 
 
-npm install 
-
-
+npm install tailwindcss-border-gradient-radius
+yarn add tailwindcss-border-gradient-radius
 
 ## Usage
 
@@ -28,7 +27,7 @@ npm install
         }),
   },
   plugins: [
-    require('tailwindcss-gradients'),
+    require('tailwindcss-border-gradients-radius')(),
   ],
 }
 ```
