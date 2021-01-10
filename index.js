@@ -41,53 +41,64 @@ const flattenColorPalette = function(colors) {
   module.exports = plugin(function({ theme, variants, e, addUtilities }) {
 
     const defaultLinearBorderGradientDirections = {
-        't': 'to top',
-        'tr': 'to top right',
-        'r': 'to right',
-        'br': 'to bottom right',
-        'b': 'to bottom',
-        'bl': 'to bottom left',
-        'l': 'to left',
-        'tl': 'to top left',
-      };
-      const defaultLinearBorderGradientColors = {};
-      const defaultLinearBorderGradientBackgroundColors = {};
-      const defaultLinearBorderGradientVariants = ['responsive'];
+      't': 'to top',
+      'tr': 'to top right',
+      'r': 'to right',
+      'br': 'to bottom right',
+      'b': 'to bottom',
+      'bl': 'to bottom left',
+      'l': 'to left',
+      'tl': 'to top left',
+    };
+    const defaultLinearBorderGradientColors = {};
+    const defaultLinearBorderGradientBackgroundColors = {};
+    const defaultLinearBorderGradientBorderWidth = {
+      '1': '1px',
+      '2': '2px',
+      '4': '4px',
+    };
+    const defaultLinearBorderGradientVariants = ['responsive'];
 
-      const linearBorderGradientDirections = theme('linearBorderGradients.directions', defaultLinearBorderGradientDirections);
-      const linearBorderGradientColors = theme('linearBorderGradients.colors', defaultLinearBorderGradientColors);
-      const linearBorderGradientBackgroundColor = theme('linearBorderGradients.background', defaultLinearBorderGradientBackgroundColors);
-      const linearBorderGradientVariants = variants('linearBorderGradients', defaultLinearBorderGradientVariants);
-      
-  
-      const linearBorderGradientSelector = function(directionKey, colorKey, backgroundKey) {
-        return `.${e(`border-gradient-${directionKey}-${colorKey}-${backgroundKey}`)}`;
-      };
-  
-      const linearBorderGradientValue = function(direction, colors) {
-        const cssDefaultLinearBorderGradientDirections = ['to bottom', '180deg', '0.5turn', '200grad', '3.1416rad'];
-        return `linear-gradient(${_.includes(cssDefaultLinearBorderGradientDirections, direction) ? '' : `${direction}, `}${colors.join(', ')})`;
-      };
+    const linearBorderGradientDirections = theme('linearBorderGradients.directions', defaultLinearBorderGradientDirections);
+    const linearBorderGradientColors = theme('linearBorderGradients.colors', defaultLinearBorderGradientColors);
+    const linearBorderGradientBackgroundColor = theme('linearBorderGradients.background', defaultLinearBorderGradientBackgroundColors);
+    const linearBorderGradientBorderWidth = theme('linearBorderGradients.border', defaultLinearBorderGradientBorderWidth);
+    const linearBorderGradientVariants = variants('linearBorderGradients', defaultLinearBorderGradientVariants);
+    
 
-      const linearBorderGradientBackgroundColorValue = function(gradientBackgroundColor) {
-        return `linear-gradient( to right, ${gradientBackgroundColor}, ${gradientBackgroundColor} )`;
-      };
-  
-      const linearBorderGradientUtilities = (function() {
-        let utilities = {};
-        _.forEach(flattenColorPalette(linearBorderGradientColors), (colors, colorKey) => {
-          colors = normalizeColors(colors, true);
-          if (!colors) {
+    const linearBorderGradientSelector = function(directionKey, colorKey, backgroundKey, borderKey) {
+      return `.${e(`border-gradient-${directionKey}-${colorKey}-${backgroundKey}-${borderKey}`)}`;
+    };
+
+    const linearBorderGradientValue = function(direction, colors) {
+      const cssDefaultLinearBorderGradientDirections = ['to bottom', '180deg', '0.5turn', '200grad', '3.1416rad'];
+      return `linear-gradient(${_.includes(cssDefaultLinearBorderGradientDirections, direction) ? '' : `${direction}, `}${colors.join(', ')})`;
+    };
+
+    const linearBorderGradientBackgroundColorValue = function(gradientBackgroundColor) {
+      return `linear-gradient( to right, ${gradientBackgroundColor}, ${gradientBackgroundColor} )`;
+    };
+
+    const linearBorderGradientBorderValue = function(border) {
+      return `${border} solid transparent`;
+    }
+
+    const linearBorderGradientUtilities = (function() {
+      let utilities = {};
+      _.forEach(flattenColorPalette(linearBorderGradientColors), (colors, colorKey) => {
+        colors = normalizeColors(colors, true);
+        if (!colors) {
+          return; // continue
+        }
+        _.forEach(flattenColorPalette(linearBorderGradientBackgroundColor), (gradientBackgroundColor, backgroundKey) => {
+          gradientBackgroundColor = _.tail(normalizeColors(gradientBackgroundColor, true));
+          if (!gradientBackgroundColor) {
             return; // continue
           }
-          _.forEach(flattenColorPalette(linearBorderGradientBackgroundColor), (gradientBackgroundColor, backgroundKey) => {
-            gradientBackgroundColor = _.tail(normalizeColors(gradientBackgroundColor, true));
-            if (!gradientBackgroundColor) {
-              return; // continue
-            }
+          _.forEach(linearBorderGradientBorderWidth, (border, borderKey) => { 
             _.forEach(linearBorderGradientDirections, (direction, directionKey) => {
-              utilities[linearBorderGradientSelector(directionKey, colorKey, backgroundKey)] = {
-                border: '2px solid transparent',
+              utilities[linearBorderGradientSelector(directionKey, colorKey, backgroundKey, borderKey)] = {
+                border: linearBorderGradientBorderValue(border),
                 background: 
                     `${linearBorderGradientBackgroundColorValue(gradientBackgroundColor)}, ${linearBorderGradientValue(direction, colors)}`,
                 backgroundClip: 'padding-box, border-box',
@@ -96,8 +107,9 @@ const flattenColorPalette = function(colors) {
             });
           });
         });
-        return utilities;
-      })();
+      });
+      return utilities;
+    })();
   
       addUtilities(linearBorderGradientUtilities, linearBorderGradientVariants);
       

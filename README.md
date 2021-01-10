@@ -4,7 +4,10 @@ Tailwind CSS plugin for generating border gradients with could be used with the 
 
 > The plugin is based on [tailwindcss-gradients](https://github.com/benface/tailwindcss-gradients).
 
+
 ![BorderGradientRounded](./img/border-gradient-rounded.png)
+
+See it in action: https://play.tailwindcss.com/9p97oZjKeH
 ## Requirements
 
 This plugin requires Tailwind CSS 1.2 or later. It's recommended to use the new 2.x version. 
@@ -32,9 +35,11 @@ yarn add tailwindcss-border-gradient-radius
 }
 ```
 
-With colors you can specify your border gradients.
-With background you can specify your background within your button for example.
-Please note that at the moment it's not working to use variants.extend.linearBorderGradients to extend the generated variants, but you can replace the generated variants as you can see in the example below.
+- With colors you can specify your border gradients.
+- With background you can specify your background within your button for example.
+- With border you can specify the border of your border gradient
+
+> :warning: **Using extend variants not supported** Please note that at the moment it's not working to use variants.extend.linearBorderGradients to extend the generated variants, but you can replace the generated variants as you can see in the example below.
 
 ```js
 {
@@ -61,6 +66,11 @@ Please note that at the moment it's not working to use variants.extend.linearBor
         'gray-50': '#F9FAFB'.
         'gray-900':'#111827',
       },
+      border: { // defaults to these values
+        '1': '1px',
+        '2': '2px',
+        '4': '4px',
+      },
     },
 
   },
@@ -79,8 +89,8 @@ This plugin generates the following utilities:
 
 ```css
 /* configurable with the "linearBorderGradients" theme object */
-.border-gradient-[direction-key]-[color-key]-[background-key] {
-    border: 2px solid transparent;
+.border-gradient-[direction-key]-[color-key]-[background-key]-[border-key] {
+    border: [border-width-value] solid transparent;
     background: 
         linear-gradient( to right, [background-value], [background-value] ), 
         linear-gradient(to [direction-value], [color-value-1], [color-value2], [color-value-n]);
@@ -92,14 +102,14 @@ This plugin generates the following utilities:
 
 # Example how to use in Tailwind
 
-https://play.tailwindcss.com/64999vl0gC
+https://play.tailwindcss.com/9p97oZjKeH
 
 
 ```html
 <div class="bg-gray-900 p-12">
   <div class="text-center">
     <h1 class="text-gray-100 text-medium mb-3">Border gradient with rounded corners</h1>
-    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900 border-solid border-4 rounded-xl text-gray-100 text-lg">Button text</button>
+    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900-2 border-solid border-4 rounded-xl text-gray-100 text-lg">Button text</button>
   </div>
 </div>
 
