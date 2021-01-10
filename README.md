@@ -7,7 +7,7 @@ Tailwind CSS plugin for generating border gradients with could be used with the 
 
 ![BorderGradientRounded](./img/border-gradient-rounded.png)
 
-See it in action: https://play.tailwindcss.com/9p97oZjKeH
+See it in action: https://play.tailwindcss.com/9LSkQgkY7p
 ## Requirements
 
 This plugin requires Tailwind CSS 1.2 or later. It's recommended to use the new 2.x version. 
@@ -37,9 +37,12 @@ yarn add tailwindcss-border-gradient-radius
 
 - With colors you can specify your border gradients.
 - With background you can specify your background within your button for example.
-- With border you can specify the border of your border gradient
+- (optional) With border you can specify the border of your border gradient
 
-> :warning: **Using extend variants not supported** Please note that at the moment it's not working to use variants.extend.linearBorderGradients to extend the generated variants, but you can replace the generated variants as you can see in the example below.
+> :warning: **Using variants extend is at the moment not supported!** Please note that at the moment variants could be *only* added by using variants, where you replace all default generated variants. 
+
+
+### Advanced
 
 ```js
 {
@@ -66,7 +69,7 @@ yarn add tailwindcss-border-gradient-radius
         'gray-50': '#F9FAFB'.
         'gray-900':'#111827',
       },
-      border: { // defaults to these values
+      border: { // defaults to these values (optional)
         '1': '1px',
         '2': '2px',
         '4': '4px',
@@ -85,12 +88,15 @@ yarn add tailwindcss-border-gradient-radius
 
 To learn more about the backgrounds of Gradient Borders based on CSS see Method 2: https://dev.to/rumansaleem/gradient-borders-with-css-3mnk
 
+
+It's recommended to limit the generated utility classes to a miminum to speed up the build process. 
+
+
 This plugin generates the following utilities:
 
 ```css
 /* configurable with the "linearBorderGradients" theme object */
-.border-gradient-[direction-key]-[color-key]-[background-key]-[border-key] {
-    border: [border-width-value] solid transparent;
+.border-gradient-[direction-key]-[color-key]-[background-key] {
     background: 
         linear-gradient( to right, [background-value], [background-value] ), 
         linear-gradient(to [direction-value], [color-value-1], [color-value2], [color-value-n]);
@@ -98,19 +104,27 @@ This plugin generates the following utilities:
         background-origin: padding-box, border-box;
 }
 
+/* for easier usage it also generates gradient-border for specifying the border width */
+.gradient-border-[border-key] {
+  border: [border-value] solid transparent;
+} 
 ```
 
 # Example how to use in Tailwind
 
-https://play.tailwindcss.com/9p97oZjKeH
-
+https://play.tailwindcss.com/9LSkQgkY7p
 
 ```html
 <div class="bg-gray-900 p-12">
   <div class="text-center">
-    <h1 class="text-gray-100 text-medium mb-3">Border gradient with rounded corners</h1>
-    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900-2 border-solid border-4 rounded-xl text-gray-100 text-lg">Button text</button>
+    <h1 class="text-gray-100 text-medium mb-3">Border gradient rounded and border styled with native tailwind utilities classes </h1>
+    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900 border-transparent border-solid border-2 rounded-xl text-gray-100 text-lg">Button text</button>
+  </div>
+  <div class="text-center m-8 pt-8">
+    <h1 class="text-gray-100 text-medium mb-3">Border gradient with rounded-full, hover and gradient-border utility</h1>
+    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900 hover:border-gradient-tl-blue-green-gray-900 gradient-border-3 rounded-full text-gray-100 text-lg">Button text</button>
   </div>
 </div>
+
 
 ```

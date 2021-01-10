@@ -1,3 +1,5 @@
+## [2.0.0] - 2021-01-10
+Seperate border logic to optimize build size
 ## [1.1.0] - 2021-01-10
 add utility to specifiy border-width
 improve docs
