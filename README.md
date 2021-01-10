@@ -27,13 +27,14 @@ yarn add tailwindcss-border-gradient-radius
         }),
   },
   plugins: [
-    require('tailwindcss-border-gradients-radius')(),
+    require('tailwindcss-border-gradient-radius'),
   ],
 }
 ```
 
 With colors you can specify your border gradients.
-With background you can specify your background within your button for example
+With background you can specify your background within your button for example.
+Please note that at the moment it's not working to use variants.extend.linearBorderGradients to extend the generated variants, but you can replace the generated variants as you can see in the example below.
 
 ```js
 {
@@ -67,7 +68,7 @@ With background you can specify your background within your button for example
     linearBorderGradients: ['responsive', 'hover', 'dark'], // defaults to ['responsive']
   },
   plugins: [
-    require('tailwindcss-border-gradients-radius')(),
+    require('tailwindcss-border-gradient-radius'),
   ],
 }
 ```
