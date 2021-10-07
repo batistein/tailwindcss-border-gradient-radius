@@ -66,7 +66,7 @@ yarn add tailwindcss-border-gradient-radius
         'black-white-with-stops': ['#000', '#000 45%', '#fff 55%', '#fff'],
       },
       background: {
-        'gray-50': '#F9FAFB'.
+        'gray-50': '#F9FAFB',
         'gray-900':'#111827',
       },
       border: { // defaults to these values (optional)
