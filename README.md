@@ -39,8 +39,6 @@ yarn add tailwindcss-border-gradient-radius
 - With background you can specify your background within your button for example.
 - (optional) With border you can specify the border of your border gradient
 
-> :warning: **Using variants extend is at the moment not supported!** Please note that at the moment variants could be *only* added by using variants, where you replace all default generated variants. 
-
 
 ### Advanced
 
