@@ -2,15 +2,13 @@
 
 Tailwind CSS plugin for generating border gradients with could be used with the rounded utility class.
 
-> The plugin is based on [tailwindcss-gradients](https://github.com/benface/tailwindcss-gradients).
-
 
 ![BorderGradientRounded](./img/border-gradient-rounded.png)
 
 See it in action: https://play.tailwindcss.com/9LSkQgkY7p
 ## Requirements
 
-This plugin requires Tailwind CSS 1.2 or later. It's recommended to use the new 2.x version. 
+This plugin requires Tailwind CSS 3 or later.
 
 ## Installation 
 ```
@@ -23,12 +21,14 @@ yarn add tailwindcss-border-gradient-radius
 
 ```js
 {
-  theme: {
-    linearBorderGradients: theme => ({
-        colors: theme('colors'),
-        background: theme('colors'),
-        }),
-  },
+  theme:     
+    extend: {
+      linearBorderGradients: ({theme }) => ({
+      colors: {
+        'light-blue': [colors.indigo[200], colors.lime[300]],
+      },
+      background: theme('colors'),
+      }),
   plugins: [
     require('tailwindcss-border-gradient-radius'),
   ],
@@ -77,9 +77,6 @@ yarn add tailwindcss-border-gradient-radius
     },
 
   },
-  variants: {
-    linearBorderGradients: ['responsive', 'hover', 'dark'], // defaults to ['responsive']
-  },
   plugins: [
     require('tailwindcss-border-gradient-radius'),
   ],
@@ -122,7 +119,7 @@ https://play.tailwindcss.com/9LSkQgkY7p
   </div>
   <div class="text-center m-8 pt-8">
     <h1 class="text-gray-100 text-medium mb-3">Border gradient with rounded-full, hover and gradient-border utility</h1>
-    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900 hover:border-gradient-tl-blue-green-gray-900 gradient-border-3 rounded-full text-gray-100 text-lg">Button text</button>
+    <button type="button" class="inline-flex items-center px-6 py-3 border-gradient-br-blue-green-gray-900 hover:border-gradient-tl-blue-green-gray-900 gradient-border-2 rounded-full text-gray-100 text-lg">Button text</button>
   </div>
 </div>
 

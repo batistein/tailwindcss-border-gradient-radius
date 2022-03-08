@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-border-gradient-radius",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Tailwind CSS plugin for generating border gradients with could be used with the rounded utility",
   "author": "Sven Batista Steinbach ",
   "license": "MIT",
@@ -25,8 +25,8 @@
     "jest": "^26.1.0",
     "jest-matcher-css": "^1.1.0",
     "postcss": "^7.0.32",
-    "release-it": "^13.6.5",
-    "tailwindcss": "^2.0.2"
+    "release-it": "^14.12.5",
+    "tailwindcss": "^3.0.23"
   },
   "main": "index.js"
 }
