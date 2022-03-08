@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-border-gradient-radius",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Tailwind CSS plugin for generating border gradients with could be used with the rounded utility",
   "author": "Sven Batista Steinbach ",
   "license": "MIT",
