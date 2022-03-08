@@ -1,3 +1,5 @@
+## [3.0.0] - 2022-03-08
+Updates to Tailwind 3.
 ## [2.0.0] - 2021-01-10
 Seperate border logic to optimize build size
 ## [1.1.0] - 2021-01-10
