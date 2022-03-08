@@ -69,7 +69,7 @@ yarn add tailwindcss-border-gradient-radius
         'gray-50': '#F9FAFB',
         'gray-900':'#111827',
       },
-      border: { // defaults to these values (optional)
+      borders: { // defaults to these values (optional)
         '1': '1px',
         '2': '2px',
         '4': '4px',
